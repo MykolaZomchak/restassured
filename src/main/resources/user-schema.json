@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "User data",
+  "type": "object",
+  "required":["id", "name", "username", "email", "address", "phone", "website", "company"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "name": {
+      "description": "First and last name",
+      "type": "string",
+      "pattern": "\\w+ \\w+"
+    },
+    "username": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "address": {
+      "required":["street", "suite", "city", "zipcode", "geo"],
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "suite": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "zipcode": {
+          "type": "string",
+          "pattern": "\\d{5}-\\d{4}"
+        },
+        "geo": {
+          "type": "object",
+          "required":["lat", "lng"],
+          "properties": {
+            "lat": {
+              "type": "string",
+              "pattern": "-?\\d+(\\.\\d+)?"
+            },
+            "lng": {
+              "type": "string",
+              "pattern": "-?\\d+(\\.\\d+)?"
+            }
+          }
+        }
+      }
+    },
+    "phone": {
+      "type": "string",
+      "pattern": "\\d-\\d{3}-\\d{3}-\\d{4} x\\d{5}"
+    },
+    "website": {
+      "type": "string",
+      "format": "uri"
+    },
+    "company": {
+      "required":["name", "catchPhrase", "bs"],
+      "type":"object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "catchPhrase": {
+          "type": "string"
+        },
+        "bs": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
